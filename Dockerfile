@@ -37,3 +37,7 @@ FROM bitnami/nginx:1.27 AS prod
 
 # Copy static assets from builder stage
 COPY --from=build /app/dist /app
+
+FROM scratch AS export
+
+COPY --from=build /app/dist/ /dist/
