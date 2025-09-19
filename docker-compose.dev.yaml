@@ -1,0 +1,28 @@
+# Development overrides docker-compose YAML
+
+
+services:
+
+  website:
+    image: website:dev
+    volumes:
+      - $APPS_DIRECTORY/website/src/:/app/src/
+      # - $APPS_DIRECTORY/website/node_modules/:/app/node_modules/
+      - $APPS_DIRECTORY/website/package.json:/app/package.json
+      - $APPS_DIRECTORY/website/pnpm-lock.yaml:/app/pnpm-lock.yaml
+      - $APPS_DIRECTORY/website/vite.config.ts:/app/vite.config.ts
+      - $APPS_DIRECTORY/website/postcss.config.js:/app/postcss.config.js
+      - $APPS_DIRECTORY/website/tailwind.config.js:/app/tailwind.config.js
+      - $APPS_DIRECTORY/website/tsconfig.json:/app/tsconfig.json
+      - $APPS_DIRECTORY/website/dist:/app/dist
+      - $APPS_DIRECTORY/website/.env.local:/app/.env
+
+    expose:
+      - "5173"
+      
+    networks: [appnet]
+
+    # # Color configuration
+    # tty: true           # allocate a TTY (critical for colors)
+    # environment:
+    #   - TERM=xterm-256color

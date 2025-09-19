@@ -1,0 +1,8 @@
+# Main docker-compose YAML
+
+
+services:
+
+  website:
+    container_name: website
+    image: website:prod
